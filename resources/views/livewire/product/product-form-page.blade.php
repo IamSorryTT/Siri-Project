@@ -247,7 +247,9 @@
                                         class="form-control @error('prod_qty') is-invalid @enderror" 
                                         placeholder="กรุณาระบุจำนวนสินค้า" 
                                         wire:model="prod_qty"
-                                        wire:change="calculateCubicMeterPkg"/>
+                                        wire:change="calculateCubicMeterPkg"
+                                        onkeydown="validateInput(event)"
+                                        oninput="this.value = this.value.replace(/[^\d.]/g, '');"/>
                                     @error('prod_qty')
                                     <div id="prod_qty_validation" class="invalid-feedback">
                                         {{ $message }}
@@ -262,7 +264,10 @@
                                         type="text"
                                         class="form-control @error('prod_qty_pkg') is-invalid @enderror" 
                                         placeholder="กรุณาระบุจำนวนแพ็คเก็ต" 
-                                        wire:model="prod_qty_pkg"/>
+                                        wire:model="prod_qty_pkg"
+                                        wire:change="calculateCubicMeterPkg"
+                                        onkeydown="validateInput(event)"
+                                        oninput="this.value = this.value.replace(/[^\d.]/g, '');"/>
                                     @error('prod_qty_pkg')
                                     <div id="prod_qty_pkg_validation" class="invalid-feedback">
                                         {{ $message }}
@@ -294,7 +299,9 @@
                         class="form-control @error('dis_width') is-invalid @enderror" 
                         placeholder="กรุณาระบุความกว้าง" 
                         wire:model="dis_width"
-                        wire:change="calculateCubicMeterPkg"/>
+                        wire:change="calculateCubicMeterPkg"
+                        onkeydown="validateInput(event)"
+                        oninput="this.value = this.value.replace(/[^\d.]/g, '');"/>
                     @error('dis_width')
                     <div id="dis_width_validation" class="invalid-feedback">
                         {{ $message }}
@@ -310,7 +317,10 @@
                         class="form-control @error('dis_length') is-invalid @enderror" 
                         placeholder="กรุณาระบุความยาว" 
                         wire:model="dis_length"
-                         wire:change="calculateCubicMeterPkg"/>
+                        wire:change="calculateCubicMeterPkg"
+                        onkeydown="validateInput(event)"
+                        oninput="this.value = this.value.replace(/[^\d.]/g, '');"/>
+                         
                     @error('dis_length')
                     <div id="dis_length_validation" class="invalid-feedback">
                         {{ $message }}
@@ -326,7 +336,9 @@
                         class="form-control @error('dis_height') is-invalid @enderror" 
                         placeholder="กรุณาระบุความสูง" 
                         wire:model="dis_height"
-                         wire:change="calculateCubicMeterPkg"/>
+                        wire:change="calculateCubicMeterPkg"
+                        onkeydown="validateInput(event)"
+                        oninput="this.value = this.value.replace(/[^\d.]/g, '');"/>
                     @error('dis_height')
                     <div id="dis_height_validation" class="invalid-feedback">
                         {{ $message }}
@@ -363,7 +375,9 @@
                 class="form-control @error('dis_nw') is-invalid @enderror" 
                 placeholder="กรุณาระบุ N.W." 
                 wire:model="dis_nw"
-                wire:change="calculateCubicMeterPkg"/>
+                wire:change="calculateCubicMeterPkg"
+                onkeydown="validateInput(event)"
+                oninput="this.value = this.value.replace(/[^\d.]/g, '');"/>
                 
             @error('dis_nw')
             <div id="dis_nw_validation" class="invalid-feedback">
@@ -380,7 +394,9 @@
                 class="form-control @error('dis_gw') is-invalid @enderror" 
                 placeholder="กรุณาระบุ G.W." 
                 wire:model="dis_gw"
-                wire:change="calculateCubicMeterPkg"/>
+                wire:change="calculateCubicMeterPkg"
+                onkeydown="validateInput(event)"
+                oninput="this.value = this.value.replace(/[^\d.]/g, '');"/>
             @error('dis_gw')
             <div id="dis_gw_validation" class="invalid-feedback">
                 {{ $message }}

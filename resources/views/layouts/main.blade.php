@@ -112,5 +112,17 @@
     $("#modal").modal("hide");
   })
 </script>
+
+<script>
+    function validateInput(event) {
+        // ตรวจสอบ event keyCode ว่าไม่ใช่ตัวเลขหรือไม่
+        if ((event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 186 && event.keyCode <= 192) || (event.keyCode >= 219 && event.keyCode <= 222)) {
+            // แสดงข้อความ Validate
+            alert('กรุณาระบุตัวเลขเท่านั้น');
+            // ยกเลิกการเปลี่ยนค่าของ input
+            event.preventDefault();
+        }
+    }
+</script>
 </body>
 </html>

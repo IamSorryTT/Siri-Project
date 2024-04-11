@@ -139,29 +139,31 @@ class ProductFormPage extends Component
     public function mount()
 {
     $this->calculateCubicMeterPkg();
-    $this->total_nw = 0;
-    $this->total_gw = 0;
 }
     
+
+
+ public function updated($field)
+{    
+    $rules = $this->rules();
+    $this->validateOnly($field, $rules);
+    
+    if (in_array($field, ['dis_length', 'dis_width', 'dis_height', 'dis_nw', 'dis_gw', 'prod_qty', 'prod_qty_pkg'])) {
+        $this->calculateCubicMeterPkg();
+    }
+}
+
+public function calculateCubicMeterPkg()
+{
+        $this->cubic_meter_pkg = $this->prod_qty * (($this->dis_length * $this->dis_width * $this->dis_height)  / 1000000);
+        $this->cubic_meter_total_pkg = $this->cubic_meter_pkg * $this->prod_qty_pkg;
+        $this->total_nw = $this->dis_nw * $this->prod_qty;
+        $this->total_gw = $this->dis_gw * $this->prod_qty_pkg;
+}
     public function render()
     {
         return view('livewire.product.product-form-page')
             ->extends('layouts.main')
             ->with(['cubic_meter_pkg' => $this->cubic_meter_pkg]);
-    }
-
-    public function updated($field)
-    {
-        if (in_array($field, ['dis_length', 'dis_width', 'dis_height'])) {
-            $this->calculateCubicMeterPkg();
-        }
-    }
-
-    public function calculateCubicMeterPkg()
-    {
-        $this->cubic_meter_pkg = $this->prod_qty*(($this->dis_length * $this->dis_width * $this->dis_height)  / 1000000);
-        $this->cubic_meter_total_pkg = $this->cubic_meter_pkg * $this->prod_qty_pkg;
-        $this->total_nw = $this->dis_nw * $this->prod_qty;
-        $this->total_gw = $this->dis_gw * $this->prod_qty_pkg;
     }
 }
